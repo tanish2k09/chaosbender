@@ -1,0 +1,7 @@
+creds.json
+*.sln
+*.csproj
+
+.vs/
+bin/
+obj/
