@@ -3,7 +3,7 @@
   class Strings
   {
     // CHANGE THIS FOR DIFFERENT INSTANCES
-    public const string CredsPath = "D:/Benders/chaosbender-discord/creds.json";
+    public const string CredsPath = "E:/Projects/chaosbender/chaosbender/creds.json";
 
     public const string Ready = "Ready to go chief.";
     public const string Banned = "Banned the fuck outta that shithead lmao ez";
