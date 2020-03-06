@@ -77,7 +77,7 @@ namespace Chaosbender.Handlers
       switch (command)
       {
         default:
-          await Noop(message);
+          await Reply(message, Strings.Noop);
           break;
       }
     }
@@ -85,11 +85,6 @@ namespace Chaosbender.Handlers
     public static async Task Reply(DSharpPlus.Entities.DiscordMessage message, string response)
     {
       await message.RespondAsync(response);
-    }
-
-    private static async Task Noop(DSharpPlus.Entities.DiscordMessage message)
-    {
-      await Reply(message, Strings.Noop);
     }
 
     // TODO: Make bans robust enough to see if we wanna ban a role, a member, multiple members.
