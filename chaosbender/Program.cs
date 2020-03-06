@@ -10,7 +10,7 @@ namespace Chaosbender
 {
   class Program
   {
-    private static DiscordClient discord;
+    private static DiscordShardedClient discord;
 
     static void Main(string[] args)
     {
@@ -22,7 +22,7 @@ namespace Chaosbender
       await CredentialsKeeper.ReadCreds(args[0]);
       await DatabaseHandler.InitDB();
 
-      discord = new DiscordClient(new DiscordConfiguration
+      discord = new DiscordShardedClient(new DiscordConfiguration
       {
         Token = CredentialsKeeper.Token,
         TokenType = TokenType.Bot
