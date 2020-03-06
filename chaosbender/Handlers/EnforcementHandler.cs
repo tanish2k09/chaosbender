@@ -1,8 +1,4 @@
-﻿using DSharpPlus.Entities;
-using System;
-using System.Threading.Tasks;
-
-namespace Musicbender.Handlers
+﻿namespace Chaosbender.Handlers
 {
   class EnforcementHandler
   {
