@@ -2,9 +2,6 @@
 {
   class Strings
   {
-    // CHANGE THIS FOR DIFFERENT INSTANCES
-    public const string CredsPath = "E:/Projects/chaosbender/chaosbender/creds.json";
-
     public const string Ready = "Ready to go chief.";
     public const string Banned = "Banned the fuck outta that shithead lmao ez";
     public const string Noop = "ApoLOLogies, I do not in fact yet understand what that say'eth";

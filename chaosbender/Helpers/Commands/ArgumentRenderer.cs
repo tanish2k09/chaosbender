@@ -11,7 +11,7 @@ namespace Chaosbender.Helpers.Commands
     {
       StringBuilder builder = new StringBuilder();
 
-      for (int index = CredentialsKeeper.getPrefix().Length;
+      for (int index = CredentialsKeeper.Prefix.Length;
           index < content.Length;
           ++index)
       {

@@ -1,4 +1,7 @@
 {
   "Token": "",
-  "DevID": ""
+  "DevID": "",
+  "SelfID": "",
+  "SelfDB": "",
+  "MongoConnection": ""
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Chaosbender.Handlers.Data;
 using Chaosbender.Data;
 using Chaosbender.Handlers;
 using Chaosbender.Helpers.Security;
@@ -18,17 +19,20 @@ namespace Chaosbender
 
     private static async Task MainAsync(string[] args)
     {
-      await CredentialsKeeper.ReadCreds();
+      await CredentialsKeeper.ReadCreds(args[0]);
+      await DatabaseHandler.InitDB();
 
       discord = new DiscordClient(new DiscordConfiguration
       {
-        Token = CredentialsKeeper.getToken(),
+        Token = CredentialsKeeper.Token,
         TokenType = TokenType.Bot
       });
 
+      CredentialsKeeper.WipeToken();
+
       discord.MessageCreated += async e =>
       {
-        if (e.Message.Content.StartsWith(CredentialsKeeper.getPrefix()))
+        if (e.Message.Content.StartsWith(CredentialsKeeper.Prefix))
           await MessageEventHandler.HandleCreation(e.Message);
       };
 
