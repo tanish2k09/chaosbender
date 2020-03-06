@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Musicbender.Helpers.Security
+namespace Chaosbender.Helpers.Security
 {
   class CredentialsKeeper
   {
