@@ -9,7 +9,9 @@ namespace Chaosbender.Handlers
 
 		public static async Task HandleCreation(DSharpPlus.Entities.DiscordMessage message)
 		{
-			// TODO: Implement EnforcementHandler to enforce some policies before execution
+			// TODO: Enforce some basic checks before doing anything
+			if (!EnforcementHandler.EnforceInitial(message))
+				return;
 
 			await CommandHandler.Execute(message);
 		}
