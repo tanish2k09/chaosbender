@@ -1,17 +1,19 @@
-﻿using Chaosbender.Data;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Chaosbender.Helpers.Security
+namespace Musicbender.Helpers.Security
 {
-  // TODO: Make credentials CRUD-able
   class CredentialsKeeper
   {
-    private static ulong DevID;
-    private static string Prefix = "t;";
-    private static string Token;
+    public static string Token { get; private set; }
+    public static string SelfDB { get; private set; }
+    public static ulong DevID { get; private set; }
+    public static ulong SelfID { get; private set; }
+    public static string MongoConnection { get; private set; }
+
+    // TODO: Allow custom prefixes guild-wise
+    public static string Prefix { get; private set; } = "t;";
 
     // This struct might show warnings about no initialized value
     // It is assigned by the JSON read operation in ReadCreds()
@@ -22,45 +24,57 @@ namespace Chaosbender.Helpers.Security
 
       [JsonProperty("DevID")]
       public ulong DevID;
+
+      [JsonProperty("SelfID")]
+      public ulong SelfID;
+
+      [JsonProperty("SelfDB")]
+      public string SelfDB;
+
+      [JsonProperty("MongoConnection")]
+      public string MongoConnection;
     }
 
-    public static string getPrefix()
-    {
-      return Prefix;
-    }
-
-    public static string getToken()
-    {
-      return Token;
-    }
-
-    public static Boolean IsDev(ulong id)
+    public static bool IsDev(ulong id)
     {
       return id == DevID;
     }
 
-    public static Boolean IsAdmin(ulong id)
+    public static bool IsAdmin(ulong id)
     {
       return IsDev(id); // || other admins <- TODO
     }
 
-    public static Boolean IsOperator(ulong id)
+    public static bool IsOperator(ulong id)
     {
       return true; // admins or actual operators <- TODO
     }
 
-    public static async Task<Boolean> ReadCreds()
+    public static async Task<bool> ReadCreds(string path)
     {
       // Read credentials as Token and DevID into a struct object from creds.json
       string info = "";
-      using (FileStream fs = File.OpenRead(Strings.CredsPath))
+      using (FileStream fs = File.OpenRead(path))
       using (StreamReader sr = new StreamReader(fs))
         info = await sr.ReadToEndAsync();
 
       CredsJson creds = JsonConvert.DeserializeObject<CredsJson>(info);
       DevID = creds.DevID;
       Token = creds.Token;
+      SelfID = creds.SelfID;
+      SelfDB = creds.SelfDB;
+      MongoConnection = creds.MongoConnection;
       return true;
+    }
+
+    public static void WipeToken()
+    {
+      Token = "";
+    }
+
+    public static bool IsSelf(ulong id)
+    {
+      return id == SelfID;
     }
   }
 }
