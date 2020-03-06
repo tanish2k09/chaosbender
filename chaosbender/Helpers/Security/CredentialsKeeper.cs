@@ -17,6 +17,7 @@ namespace Musicbender.Helpers.Security
 
     // This struct might show warnings about no initialized value
     // It is assigned by the JSON read operation in ReadCreds()
+#pragma warning disable 0649
     private struct CredsJson
     {
       [JsonProperty("Token")]
@@ -34,6 +35,7 @@ namespace Musicbender.Helpers.Security
       [JsonProperty("MongoConnection")]
       public string MongoConnection;
     }
+#pragma warning restore 0649
 
     public static bool IsDev(ulong id)
     {
