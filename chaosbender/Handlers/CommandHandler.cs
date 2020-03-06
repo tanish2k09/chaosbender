@@ -26,6 +26,8 @@ namespace Chaosbender.Handlers
         await ExecuteAdmin(message, command);
       else if (CredentialsKeeper.IsOperator(message.Author.Id))
         await ExecuteOperator(message, command);
+      else
+        await ExecutePublic(message, command);
     }
 
     /* All commands executable by the developers only will be listed here */
@@ -60,6 +62,17 @@ namespace Chaosbender.Handlers
 
     /* All commands executable by operators will be listed here */
     private static async Task ExecuteOperator(DSharpPlus.Entities.DiscordMessage message, string command)
+    {
+      switch (command)
+      {
+        default:
+          await ExecutePublic(message, command);
+          break;
+      }
+    }
+
+    /* All commands executable by most users will be listed here */
+    private static async Task ExecutePublic(DSharpPlus.Entities.DiscordMessage message, string command)
     {
       switch (command)
       {
