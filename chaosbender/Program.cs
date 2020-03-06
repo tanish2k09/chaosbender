@@ -36,7 +36,7 @@ namespace Chaosbender
           await MessageEventHandler.HandleCreation(e.Message);
       };
 
-      await discord.ConnectAsync();
+      await discord.StartAsync();
 
       Console.WriteLine(Strings.Ready);
       await Task.Delay(-1);
